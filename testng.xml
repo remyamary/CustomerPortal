@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Customer Portal Functional test suite">
+  <test name="Functional Test" preserve-order="true">
+    <classes>
+      <class name="testCases.Admin.TC_VerifyLogin"/> 
+    <class name="testCases.Admin.TC_CreateMarketingUser"/>   
+        <!--  <class name="testcases.Masters.TC_AdminUser_Delete"/>   
+       <class name="testcases.Masters.TC_AdminOrganization_Add"/>   
+       <class name="testcases.Masters.TC_AdminOrganization_Edit"/> 
+       <class name="testcases.Masters.TC_AdminOrganization_Delete"/> -->
+       <!--  <class name="testcases.Masters.TC_AdminOrganization_GetRegURLLink"/> 
+         <class name="testcases.Dewey.TC_UserRegistration"/> 
+         <class name="testcases.Dewey.TC_SwitchLanguage"/> 
+          <class name="testcases.Dewey.TC_WelcomeToDewey"/> 
+          <class name="testcases.Dewey.TC_WelcomeVideo"/> 
+           <class name="testcases.Dewey.TC_WhatYouAreInterestedIn"/> 
+          <class name="testcases.Masters.TC_AdminCaregiverUser_Delete"/>
+         <class name="testcases.Masters.TC_AdminCaregiverUser_Edit"/>-->
+        
+        
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
