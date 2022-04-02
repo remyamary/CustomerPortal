@@ -25,17 +25,18 @@ public class TC_CreateMarketingUser extends CustomerPortalWrappers{
 	}
 
 	@Test(dataProvider = "fetchData")
-	public void addMarketingUser(String EmpCode, String Name , String UserRole, String EditedRole) throws Exception {	
+	public void addMarketingUser(String empCode, String name , String userRole, String editedRole) throws Exception {
+		boolean editFlag=false;
 		new createMarketingUserPage(driver,test)
 		.clickUserMenu()
 		.clickMarketingUserTab()
 		.clickAddNewUserButton()
 		.clickMarketingUserLink()
-		.enterEmployeeCode(EmpCode)
+		.enterEmployeeCode(empCode)
 		.clickSubmitEmployeeCode()
-		.clickEmployeeRole(UserRole)
+		.clickEmployeeRole(userRole)
 		.clickSubmitEmployee()
-		.verifyMarketingEmployee(EmpCode, Name, UserRole);
+		.verifyMarketingEmployee(empCode, name, userRole,editFlag);
 		
 	
 	}

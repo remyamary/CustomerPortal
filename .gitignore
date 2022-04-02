@@ -16,3 +16,4 @@ tmp/
 local.properties
 .loadpath
 .factorypath
+/target/

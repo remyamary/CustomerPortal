@@ -5,8 +5,8 @@
     <classes>
       <class name="testCases.Admin.TC_VerifyLogin"/> 
     <class name="testCases.Admin.TC_CreateMarketingUser"/>   
-        <!--  <class name="testcases.Masters.TC_AdminUser_Delete"/>   
-       <class name="testcases.Masters.TC_AdminOrganization_Add"/>   
+      <class name="testCases.Admin.TC_EditMarketingUser"/>   
+         <!--  <class name="testcases.Masters.TC_AdminOrganization_Add"/>   
        <class name="testcases.Masters.TC_AdminOrganization_Edit"/> 
        <class name="testcases.Masters.TC_AdminOrganization_Delete"/> -->
        <!--  <class name="testcases.Masters.TC_AdminOrganization_GetRegURLLink"/> 

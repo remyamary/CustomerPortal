@@ -24,13 +24,13 @@ public class TC_VerifyLogin extends CustomerPortalWrappers{
 	}
 
 	@Test(dataProvider = "fetchData")
-	public void verifyLogin(String UserName, String Password, String VerifyLogin) throws Exception {	
+	public void verifyLogin(String userName, String password, String verifyLogin) throws Exception {	
 		invokeApp(browserName);
 		new adminLoginPage(driver, test)
-		.username(UserName)
-		.password(Password)
+		.username(userName)
+		.password(password)
 		.clickLoginButton()
-		.verifyLogin(VerifyLogin);
+		.verifyLogin(verifyLogin);
 				
 	}
 	

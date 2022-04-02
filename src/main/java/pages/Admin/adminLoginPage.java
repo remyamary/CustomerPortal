@@ -15,28 +15,28 @@ public class adminLoginPage extends CustomerPortalWrappers {
 	}
 	
 	
-	public adminLoginPage username(String UserName) throws InterruptedException
+	public adminLoginPage username(String userName) throws InterruptedException
 	{
-		enterById(prop.getProperty("cp.UserName.Id"), UserName);
+		enterById(prop.getProperty("cp.userName.id"), userName);
 		return this;
 	}
 	
 	public adminLoginPage password(String password) throws InterruptedException
 	{	
-		enterById(prop.getProperty("cp.Password.Id"), password);
+		enterById(prop.getProperty("cp.password.id"), password);
 		return this;
 	}
 	
 	public adminLoginPage clickLoginButton()
 	{
-		clickByXpath(prop.getProperty("cp.LoginButton.xpath"));
+		clickByXpath(prop.getProperty("cp.loginButton.xpath"));
 		return this;
 	}
 
 	public adminLoginPage verifyLogin(String verifyLogin) throws InterruptedException
 	{
 		Thread.sleep(1000);
-		verifyTextByXpath(prop.getProperty("cp.LoginVerify.xpath"), verifyLogin);
+		verifyTextByXpath(prop.getProperty("cp.loginVerify.xpath"), verifyLogin);
 		return this;
 		
 	}

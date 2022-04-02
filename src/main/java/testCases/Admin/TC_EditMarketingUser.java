@@ -12,10 +12,9 @@ public class TC_EditMarketingUser extends CustomerPortalWrappers{
 
 	@BeforeClass
 	public void setValues() throws InterruptedException {
-		//dataSheetName = "MarketingUser";
 		dataSheetName = "ManageMarketingUser";
-		testCaseName  = "Create Marketing User";
-		testDescription = "Add new marketing user and verify the newly created user.";
+		testCaseName  = "Edit Marketing User";
+		testDescription = "Edit marketing user and verify the edited created user.";
 		category = "Regression Test";
 		authors = "Remya Mary Paul";
 		browserName = "chrome";
@@ -25,19 +24,14 @@ public class TC_EditMarketingUser extends CustomerPortalWrappers{
 	}
 
 	@Test(dataProvider = "fetchData")
-	public void editMarketingUser(String EmpCode, String Name , String UserRole, String EditedRole) throws Exception {	
+	public void editMarketingUser(String empCode, String name , String userRole, String editedRole) throws Exception {
+		boolean editFlag = true;
 		new createMarketingUserPage(driver,test)
-		.clickUserMenu()
-		.clickMarketingUserTab()
-		.clickAddNewUserButton()
-		.clickMarketingUserLink()
-		.enterEmployeeCode(EmpCode)
-		.clickSubmitEmployeeCode()
-		.clickEmployeeRole(UserRole)
+		.clickEditMarketingUserIcon()
+		.clickEmployeeRole(editedRole)
 		.clickSubmitEmployee()
-		.verifyMarketingEmployee(EmpCode, Name, UserRole);
-		
-	
+	    .verifyMarketingEmployee(empCode, name, editedRole, editFlag);
+			
 	}
 	
 	
