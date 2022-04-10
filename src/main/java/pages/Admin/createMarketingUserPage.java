@@ -24,12 +24,14 @@ public class createMarketingUserPage extends CustomerPortalWrappers {
 		return this;
 	}
 
-	public createMarketingUserPage clickMarketingUserTab() {
+	public createMarketingUserPage clickMarketingUserTab() throws InterruptedException {
+		Thread.sleep(5000);
 		clickByXpath(prop.getProperty("cp.marketingUserTab.xpath"));
 		return this;
 	}
 
-	public createMarketingUserPage clickAddNewUserButton() {
+	public createMarketingUserPage clickAddNewUserButton() throws InterruptedException {
+		Thread.sleep(5000);
 		System.out.println("********** Add Marketing User ********");
 		clickByXpath(prop.getProperty("cp.addNewUserButton.xpath"));
 		return this;
@@ -67,7 +69,7 @@ public class createMarketingUserPage extends CustomerPortalWrappers {
 	 * This is a common method for verifying the newly added/ edited marketing user.
 	 * 
 	 * @author Remya Mary Paul
-	 * @param empCode  
+	 * @param empCode
 	 * @param empName
 	 * @param empRole
 	 * @param editFlag - pass true if we need to verify edited marketing employee.
@@ -75,11 +77,11 @@ public class createMarketingUserPage extends CustomerPortalWrappers {
 	 * @throws InterruptedException
 	 *
 	 */
-	public createMarketingUserPage verifyMarketingEmployee(String empCode, String empName, String empRole, Boolean editFlag) 
-		throws InterruptedException {
+	public createMarketingUserPage verifyMarketingEmployee(String empCode, String empName, String empRole,
+			Boolean editFlag) throws InterruptedException {
 		boolean result = false;
 		String beforeUserXpath;
-		enterByXpath(prop.getProperty("cp.marketingUserSearchIn.xpath"), empCode);
+		enterByXpath(prop.getProperty("cp.marketingUserSearch.xpath"), empCode);
 		if (editFlag) {
 			beforeUserXpath = prop.getProperty("cp.editedBeforeUser.xpath");
 		} else {
@@ -120,6 +122,7 @@ public class createMarketingUserPage extends CustomerPortalWrappers {
 		clickByXpath(prop.getProperty("cp.editMarketingUserLink.xpath"));
 		return this;
 	}
+
 	// clickDeleteMarketingUserIcon method will click on Delete link against a Marketing User
 	public createMarketingUserPage clickDeleteMarketingUserLink() {
 		System.out.println("********** Delete Marketing User ********");
@@ -127,27 +130,30 @@ public class createMarketingUserPage extends CustomerPortalWrappers {
 		return this;
 	}
 	// clickdeleteConfirmButton method will click on Confirm button for deleting Marketing User
-	
-	public createMarketingUserPage clickdeleteConfirmButton() {
+
+	public createMarketingUserPage clickdeleteConfirmButton() throws InterruptedException {
+		Thread.sleep(3000);
 		clickByXpath(prop.getProperty("cp.deleteConfirmButton.xpath"));
+		System.out.println("confirm delete");
 		return this;
 	}
-	public createMarketingUserPage verifyDeleteMarketingEmployee(String empCode) {
-		/* 1. clear search empcode 
-		 * 2. Enter empcode
-		 * 3. verify the row size is zero.
-		 */
-		driver.findElement(By.xpath("cp.marketingUserSearch.title")).clear();
-		
-		//To locate table.
-    	WebElement mytable = driver.findElement(By.xpath("//*[@id=\"mat-tab-content-3-1\"]/div/div/table"));
-    	//To locate rows of table. 
-    	List < WebElement > rows_table = mytable.findElements(By.tagName("tr"));
-    	//To calculate no of rows In table.
-    	int rows_count = rows_table.size();
-    	System.out.println("Row count="+rows_count);
-		//  //*[@class='table table-striped responsive-table']
-		return this;
-	}
+// verifyDeleteMarketingEmployee method accepts employee code as parameter and verify whether the employee is deleted or not.
 	
+	public void verifyDeleteMarketingEmployee(String empCode) throws InterruptedException {
+		Thread.sleep(3000);
+		// To locate table and assign its contents.
+		List<WebElement> empTable = driver.findElements(By.xpath(prop.getProperty("cp.employeeTable.xpath")));
+		
+		System.out.println("table=" + empTable);
+		// If the table has no rows(elements), then the user delete is verified.
+		if (empTable.size() == 0) {
+			System.out.println("Marketing  user deleted");
+			reportStep("Marketing  user: "+empCode+" deleted", "PASS");
+		} else {
+			System.out.println("Failed to delete marketing user");
+			reportStep("Failed to delete marketing user: "+empCode, "FAIL");
+		}
+		driver.quit();
+	}
+
 }

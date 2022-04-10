@@ -1,4 +1,3 @@
-
 package testCases.Admin;
 
 import org.testng.annotations.BeforeClass;
@@ -25,8 +24,7 @@ public class TC_DeleteMarketingUser extends CustomerPortalWrappers{
 	}
 
 	@Test(dataProvider = "fetchData")
-	public void editMarketingUser(String empCode, String name , String userRole, String editedRole) throws Exception {
-		boolean editFlag = true;
+	public void deleteMarketingUser(String empCode, String name , String userRole, String editedRole) throws Exception {
 		new createMarketingUserPage(driver,test)
 		.clickDeleteMarketingUserLink()
 		.clickdeleteConfirmButton()

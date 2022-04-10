@@ -63,6 +63,7 @@ public class GenericWrappers extends Reporter implements Wrappers
 	public int actualtablecolumnsize;
 	public static RemoteWebDriver driver;
 	String[][] uploadboq_table_array;
+	String[][] webTableArray;
 	String[][] uploadboq_excel_array;
 	String[][] projectConfig_Grid_array;
 	String[][] materialCostCalculation_Grid_Array;
@@ -86,7 +87,7 @@ public class GenericWrappers extends Reporter implements Wrappers
 
 	protected static Properties prop;
 	public String username , password , siteEstablishmentDataFile,dataSheetName,dataFileName,insulationDataFile ,
-	sUrl,primaryWindowHandle,sHubUrl,sHubPort,environment="",jobStatus="",matSupplyDataFile,manpowerSupplyDataFile,paintingDataFile;
+	sUrl,primaryWindowHandle,sHubUrl,marketingUrl,sHubPort,environment="",jobStatus="",matSupplyDataFile,manpowerSupplyDataFile,paintingDataFile;
 
 	public GenericWrappers() {
 		Properties prop = new Properties();
@@ -95,6 +96,7 @@ public class GenericWrappers extends Reporter implements Wrappers
 			sHubUrl = prop.getProperty("HUB");
 			sHubPort = prop.getProperty("PORT");
 			sUrl = prop.getProperty("URL");
+			marketingUrl = prop.getProperty("MARKETING_URL");
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -132,7 +134,7 @@ public class GenericWrappers extends Reporter implements Wrappers
 	}
 
 	/**
-	 * This method will launch the browser in grid node (if remote) and maximise the browser and set the
+	 * This method will launch the browser in grid node (if remote) and maximize the browser and set the
 	 * wait for 30 seconds and load the url 
 	 * 
 	 * @param url - The url with http or https
@@ -175,6 +177,38 @@ public class GenericWrappers extends Reporter implements Wrappers
 				}		
 			}
 			driver.get(sUrl);
+			Thread.sleep(3000);
+			primaryWindowHandle = driver.getWindowHandle();		
+			reportStep("The browser:" + browser + " launched successfully", "PASS");
+		} catch (Exception e) {
+			e.printStackTrace();
+			reportStep("The browser:" + browser + " could not be launched", "FAIL");
+		}
+	}
+	
+	/**
+	 * This is an overloaded method will launch the browser and maximize the browser and set the
+	 * wait for 30 seconds and load the marketing user - login url 
+	 * @author Remya Mary Paul
+	 * @param browser - Browser name
+	 * @param isMarketing - Yes  for launching Customer portal marketing URL
+	 */
+	
+	public void invokeApp(String browser, String isMarketing) {
+		try {
+
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setBrowserName(browser);
+			if(isMarketing=="Yes") {				
+				if(browser.equalsIgnoreCase("chrome")){
+					System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+					driver = new ChromeDriver();
+					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+					driver.manage().window().maximize();
+					
+				    }
+			}
+			driver.get(marketingUrl);
 			Thread.sleep(3000);
 			primaryWindowHandle = driver.getWindowHandle();		
 			reportStep("The browser:" + browser + " launched successfully", "PASS");
@@ -1153,7 +1187,7 @@ public class GenericWrappers extends Reporter implements Wrappers
 	public String[][] excelread(String dataFileName,String dataSheetName) throws Exception 
 	{		
 		System.out.println("kjhgf"+dataSheetName);
-System.out.println("kiuytrs"+dataFileName);
+		System.out.println("kiuytrs"+dataFileName);
 		uploadboq_excel_array = null;
 		FileInputStream fis=new FileInputStream(dataFileName);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -1214,29 +1248,31 @@ System.out.println("kiuytrs"+dataFileName);
 	 * 
 	 * */
 
-	public String[][] getboqtabledata() throws Exception 
-	{		
-		String beforexpath="//table/tbody/tr[";
+	public String[][] getWebTableData() throws Exception 
+	{
+		String beforexpath="//table[@class='table table-striped responsive-table']/tbody/tr[";
 		String middlexpath="]/td[";
 		String afterxpath="]";
-		tablerowsize=driver.findElementsByXPath("//table/tbody/tr").size();
-		tablecolumnsize=driver.findElementsByXPath("//table/tbody/tr[1]/td").size();
-		tablecolumnsizedup=tablecolumnsize-1;
-		uploadboq_table_array= new String[tablerowsize][tablecolumnsize];
-		for(int i=1;i<=tablerowsize;i++)
+		tablerowsize=driver.findElementsByXPath("//table[@class=\'table table-striped responsive-table\']/tbody/tr").size();
+		tablecolumnsize=driver.findElementsByXPath("//table[@class=\'table table-striped responsive-table\']/tbody/tr[2]/td").size();
+		//tablecolumnsizedup=tablecolumnsize-1;
+		webTableArray= new String[tablerowsize][tablecolumnsize];
+		for(int i=2;i<=tablerowsize;i++)
 		{
 			for(int j=1;j<=tablecolumnsize;j++)
 			{
 				String value="";
 				value=driver.findElement(By.xpath(beforexpath+i+middlexpath+j+afterxpath)).getText();
-				uploadboq_table_array[i-1][j-1]=value;
-				System.out.println("Boq data"+value);
+				webTableArray[i-2][j-1]=value;
+				System.out.println("Web data"+value);
 			}
 		}
-		return uploadboq_table_array;		
+		System.out.println("Web table Row count:"+tablerowsize);
+		System.out.println("Web table Column count:"+tablecolumnsize);
+		return webTableArray;		
 	}
 
-
+	
 	
 
 	
