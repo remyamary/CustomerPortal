@@ -3,22 +3,18 @@
 <suite name="Customer Portal Functional test suite">
   <test name="Functional Test" preserve-order="true">
     <classes>
-      <class name="testCases.Admin.TC_VerifyLogin"/> 
-    <class name="testCases.Admin.TC_CreateMarketingUser"/>   
+    
+    <!--   <class name="testCases.Admin.TC_VerifyLogin"/> 
+      <class name="testCases.Admin.TC_VerifyAgency"/> 
+      <class name="testCases.Admin.TC_VerifyAgencyAddress"/>
+      <class name="testCases.Admin.TC_VerifyBranch"/>
+      <class name="testCases.Admin.TC_CreateMarketingUser"/>   
       <class name="testCases.Admin.TC_EditMarketingUser"/>   
-         <!--  <class name="testcases.Masters.TC_AdminOrganization_Add"/>   
-       <class name="testcases.Masters.TC_AdminOrganization_Edit"/> 
-       <class name="testcases.Masters.TC_AdminOrganization_Delete"/> -->
-       <!--  <class name="testcases.Masters.TC_AdminOrganization_GetRegURLLink"/> 
-         <class name="testcases.Dewey.TC_UserRegistration"/> 
-         <class name="testcases.Dewey.TC_SwitchLanguage"/> 
-          <class name="testcases.Dewey.TC_WelcomeToDewey"/> 
-          <class name="testcases.Dewey.TC_WelcomeVideo"/> 
-           <class name="testcases.Dewey.TC_WhatYouAreInterestedIn"/> 
-          <class name="testcases.Masters.TC_AdminCaregiverUser_Delete"/>
-         <class name="testcases.Masters.TC_AdminCaregiverUser_Edit"/>-->
-        
-        
+      <class name="testCases.Admin.TC_DeleteMarketingUser"/>  -->  
+         <class name="testCases.MarketingUser.TC_VerifyMarketingLogin"/>  
+	     <class name="testCases.MarketingUser.TC_RevenueSummaryDateSearch"/>
+         <class name="testCases.MarketingUser.TC_RevenueSummaryPublicationSearch"/>
+         <class name="testCases.MarketingUser.TC_RevenueSummarySalesOfficeSearch"/>   
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
