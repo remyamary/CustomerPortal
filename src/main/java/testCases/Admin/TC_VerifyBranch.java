@@ -31,7 +31,7 @@ public class TC_VerifyBranch extends CustomerPortalWrappers{
 		.enterAgencyCode(agencyCode)
 		.clickViewMore()
 		.verifyBranchData(agencyCode, branchCode, name, country, region);
-		
+		driver.quit();
 	
 	}
 	

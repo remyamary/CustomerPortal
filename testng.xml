@@ -4,17 +4,17 @@
   <test name="Functional Test" preserve-order="true">
     <classes>
     
-    <!--   <class name="testCases.Admin.TC_VerifyLogin"/> 
+     <class name="testCases.Admin.TC_VerifyLogin"/> 
+      <class name="testCases.Admin.TC_CreateMarketingUser"/>   
+      <class name="testCases.Admin.TC_EditMarketingUser"/>   
+      <class name="testCases.Admin.TC_DeleteMarketingUser"/>
       <class name="testCases.Admin.TC_VerifyAgency"/> 
       <class name="testCases.Admin.TC_VerifyAgencyAddress"/>
       <class name="testCases.Admin.TC_VerifyBranch"/>
-      <class name="testCases.Admin.TC_CreateMarketingUser"/>   
-      <class name="testCases.Admin.TC_EditMarketingUser"/>   
-      <class name="testCases.Admin.TC_DeleteMarketingUser"/>  -->  
-         <class name="testCases.MarketingUser.TC_VerifyMarketingLogin"/>  
-	     <class name="testCases.MarketingUser.TC_RevenueSummaryDateSearch"/>
-         <class name="testCases.MarketingUser.TC_RevenueSummaryPublicationSearch"/>
-         <class name="testCases.MarketingUser.TC_RevenueSummarySalesOfficeSearch"/>   
+       <class name="testCases.MarketingUser.TC_VerifyMarketingLogin"/>  
+	   <class name="testCases.MarketingUser.TC_RevenueSummaryDateSearch"/>
+       <class name="testCases.MarketingUser.TC_RevenueSummaryPublicationSearch"/>
+       <class name="testCases.MarketingUser.TC_RevenueSummarySalesOfficeSearch"/>  
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -47,15 +47,17 @@ public class createMarketingUserPage extends CustomerPortalWrappers {
 		return this;
 	}
 
-	public createMarketingUserPage clickSubmitEmployeeCode() {
+	public createMarketingUserPage clickSubmitEmployeeCode()  throws InterruptedException{
 		clickByXpath(prop.getProperty("cp.marketingUserSubmitButton.xpath"));
+		 Thread.sleep(3000);
 		return this;
 	}
 
-	public createMarketingUserPage clickEmployeeRole(String userRole) {
+	public createMarketingUserPage clickEmployeeRole(String userRole)  throws InterruptedException{
 		// clickByXpath(prop.getProperty("cp.MarketingUserRole.Xpath"+UserRole+"]"));
 		// driver.findElement(By.xpath("//label[contains(text(),'"+EditLocation+"')]")).click();
-		driver.findElement(By.xpath("//label[text()='" + userRole + "']")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//label[text()='" +userRole+ "']")).click();
 		return this;
 	}
 
@@ -153,7 +155,7 @@ public class createMarketingUserPage extends CustomerPortalWrappers {
 			System.out.println("Failed to delete marketing user");
 			reportStep("Failed to delete marketing user: "+empCode, "FAIL");
 		}
-		driver.quit();
+		//driver.quit();
 	}
 
 }

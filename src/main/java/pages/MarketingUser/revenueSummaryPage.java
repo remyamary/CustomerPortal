@@ -38,6 +38,7 @@ public class revenueSummaryPage extends CustomerPortalWrappers {
 	{
 		Thread.sleep(3000);
 		clickByXpath(prop.getProperty("cp.revenueSummarySubmitButton.xpath"));
+		Thread.sleep(5000);
 		return this;
 	}
 
